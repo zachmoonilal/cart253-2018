@@ -25,6 +25,12 @@ var bflyImage;
 var bflyImageX;
 var bflyImageY;
 
+// Image of the start
+var starImage;
+//The current position of the star image
+var starImageX;
+var starImageY;
+
 // Creating a variable which adds the image of the "forest"
 var forestImage;
 // Current postion of the transparent image of "forest"
@@ -39,10 +45,17 @@ function preload() {
   feltTextureImage = loadImage("assets/images/black-felt-texture.png");
 
 
+
+
+
 // Loading image of the forest that will be able to use in the function setup
   forestImage = loadImage("assets/images/forest.png");
-// Loading image of the forest that will be able to use in the function setup
-  bflyImage = loadImage('assets/images/bfly.png');
+
+// Loading image of the butterfly from the images folder located in exercise1
+  bflyImage = loadImage("assets/images/bfly.png");
+
+// Loading image of the star from images folder located in exercise1
+  starImage = loadImage("assets/images/star.jpg");
 }
 
 // setup()
@@ -62,13 +75,22 @@ function setup() {
   feltTextureImageY = 0 - feltTextureImage.height/2;
 
 
+
+
+
   // Butterfly image is positioned in the centre by calculating half the width and height of the canvas
   bflyImageX=width/2;
   bflyImageY=height/2;
 
   image(bflyImage, 0, 0,100,100);
 
-  // Start of the forest image by which the image of the forest is positioned
+// Star image is postioned in the center by calculating half the width and height of the canvas
+  starImageX=width/2;
+  starImageY=height/2;
+
+  image(starImage, 0, 0, 100, 100);
+
+  // Start of the forest image so that it is postitioned perfectly centered on the screen
   forestImageX = width/2;
   forestImageY = 0 - forestImage.height/2;
 
@@ -84,8 +106,6 @@ function setup() {
 // Moves the clown face toward the current mouse location
 
 function draw() {
-
-
 
   // Move the felt image down by increasing its y position
   feltTextureImageY += 1;
@@ -103,10 +123,23 @@ function draw() {
 
 
 
+
+// created variable to calculate the distance in X and Y
+  var xDistance = mouseX - starImageX;
+  var yDistance = mouseY - starImageY;
+// cut the current x and y locations of the star image in half
+  starImageX = starImageX + xDistance/50;
+  starImageY = starImageY + yDistance/50;
+
+  // Moving the forest image in frameCount so that it increases its y position
   forestImageY = frameCount;
   // Displaying the image of the forest so that it moves from left to right
   image(forestImage,forestImageY,forestImageX);
 
-  // displaying the image of the butterfly and scaling the images height and width
+  // displaying butterfly image in draw mode
   image(bflyImage,mouseX, mouseY,100,100);
+
+  //displaying the image of the star in draw mode
+  image(starImage, starImageX, starImageY, 100, 100);
+
 }
