@@ -19,7 +19,11 @@ var feltTextureImage;
 var feltTextureImageX;
 var feltTextureImageY;
 
-
+// Creating a variable which adds the image of the "forest"
+var forestImage;
+// Current postion of the transparent image of "forest"
+var forestImageX
+var forestImageY
 // preload()
 //
 // Load the two images we're using before the program starts
@@ -27,8 +31,11 @@ var feltTextureImageY;
 function preload() {
   clownImage = loadImage("assets/images/clown.png");
   feltTextureImage = loadImage("assets/images/black-felt-texture.png");
-}
 
+
+// Loading image of the forest that will be able to use in the function setup
+  forestImage = loadImage("assets/images/forest.png");
+}
 
 // setup()
 //
@@ -46,7 +53,12 @@ function setup() {
   feltTextureImageX = width/2;
   feltTextureImageY = 0 - feltTextureImage.height/2;
 
+  // Start of the forest image by which the image of the forest is positioned
+  forestImageX = width/2
+  forestImageY = 0 - forestImage.height/2;
+
   // We'll use imageMode CENTER for this script
+  // This mode will allow the script to position the image in the center
   imageMode(CENTER);
 }
 
@@ -58,13 +70,19 @@ function setup() {
 
 function draw() {
 
-  // Move the felt image down by increasing its y position
+  forestImageY += 1;
+  // Displaying the image of the forest so that it moves from left to right
+  image(forestImage,forestImageY,forestImageX);
+
+
+// Move the felt image down by increasing its y position
   feltTextureImageY += 1;
 
   // Display the felt image
   image(feltTextureImage,feltTextureImageX,feltTextureImageY);
 
   // Move the clown by moving it 1/10th of its current distance from the mouse
+
 
   // Calculate the distance in X and in Y
   var xDistance = mouseX - clownImageX;
