@@ -60,7 +60,6 @@ function preload() {
   enemyImage = loadImage("assets/images/ghost.png");
   level = loadImage("assets/images/stage.png");
 
-
 }
 
 function setup() {
@@ -156,9 +155,6 @@ function draw() {
     // reseting the player's speed and size
     avatarSpeed = 10;
     avatarSize = 50;
-
-    avatarSize = 50
-
     dodges = 0;
   }
 
@@ -176,9 +172,6 @@ function draw() {
 // if player goes off the screen, avatar speed and size will reset
     avatarSpeed = 10;
     avatarSize = 50;
-// if the player goes off the screen, avatar and speed will reset
-    avatarSize = 50
-
     dodges = 0;
   }
 
