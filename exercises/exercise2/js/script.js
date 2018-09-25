@@ -33,6 +33,8 @@ var enemySpeedIncrease = 0.5;
 // How many dodges the player has made
 var dodges = 0;
 
+// inserting
+
 // setup()
 //
 // Make the canvas, position the avatar and anemy
@@ -50,6 +52,8 @@ function setup() {
 
   // No stroke so it looks cleaner
   noStroke();
+
+
 }
 
 // draw()
@@ -152,4 +156,15 @@ function draw() {
   // Draw the enemy as a circle
   ellipse(enemyX,enemyY,enemySize,enemySize);
 
+  //added text
+  fill(255);
+  textSize(15);
+  textAlign(CENTER);
+  text("Ghosts dodged:", 400, 470);
+  // adding the font which will display the number of successful dodges
+    fill(0,0,255);
+    textFont('Impact');
+    textSize(30);
+    textAlign(CENTER);
+    text(dodges, 475,475);
 }
