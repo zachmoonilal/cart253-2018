@@ -1,9 +1,8 @@
 /*********************************************************
 
 Exercise 2 - The Artful Dodger
+Zachary Moonilal
 Pippin Barr
-Edited by Zachary Moonilal
-
 Starter code for exercise 2.
 
 *********************************************************/
@@ -39,6 +38,7 @@ var playerImage
 var playerSizeH = 75;
 var playerSizeW = 75;
 
+var playerImageSize = 75
 
 //Adding the enemy image
 var enemyImage
@@ -86,6 +86,7 @@ function setup() {
 // Handle moving the avatar and enemy and checking for dodges and
 // game over situations.
 function draw() {
+
   // Replacing pink background with "level" background
   background(level);
 
@@ -122,7 +123,7 @@ function draw() {
   // Update the enemy's position based on its velocity
   enemyX = enemyX + enemyVX;
 
-// added an if statement so that if the left or right key is pressed then random ellipses will appear
+// added an "if" statement which randomly spawns ellipses according to the keys pressed
   if (keyIsDown(LEFT_ARROW)) {
     fill(255);
     ellipse(random(width), random(height), 15,15);
@@ -151,7 +152,13 @@ function draw() {
     // Reset the avatar's position
     avatarX = width/2;
     avatarY = height/2;
-    // Reset the dodge counter
+
+    // reseting the player's speed and size
+    avatarSpeed = 10;
+    avatarSize = 50;
+
+    avatarSize = 50
+
     dodges = 0;
   }
 
@@ -165,6 +172,13 @@ function draw() {
     enemySpeed = 5;
     avatarX = width/2;
     avatarY = height/2;
+
+// if player goes off the screen, avatar speed and size will reset
+    avatarSpeed = 10;
+    avatarSize = 50;
+// if the player goes off the screen, avatar and speed will reset
+    avatarSize = 50
+
     dodges = 0;
   }
 
@@ -180,7 +194,14 @@ function draw() {
     // Increase the enemy's speed and size to make the game harder
     enemySpeed = enemySpeed + enemySpeedIncrease;
     enemySize = enemySize + enemySizeIncrease;
+
+    // added the speed and size of the avatar
+    //speed and size will have random values
+    avatarSpeed = avatarSpeed + random(0.5 , 25);
+    avatarSize = avatarSize + random(50 , 150);
   }
+
+
 
   // Display the current number of successful in the console
   console.log(dodges);
@@ -191,7 +212,7 @@ function draw() {
   //ellipse(avatarX,avatarY,avatarSize,avatarSize);
 
  // replaced the "player" ellipse with pacman image
-  image(playerImage, avatarX, avatarY,playerSizeH,playerSizeW);
+  image(playerImage, avatarX, avatarY,avatarSize,avatarSize);
 
   // The enemy is red
   //fill(255,0,0);
