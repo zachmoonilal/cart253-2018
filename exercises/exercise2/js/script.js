@@ -33,11 +33,35 @@ var enemySpeedIncrease = 0.5;
 // How many dodges the player has made
 var dodges = 0;
 
+//Adding the player image
+var playerImage
+var playerSizeH = 75;
+var playerSizeW = 75;
+
+
+//Adding the enemy image
+var enemyImage
+var enemySizeH = 75
+var enemySizeW = 75
+
+
+//Adding the background image
+var level
 // inserting
 
 // setup()
 //
 // Make the canvas, position the avatar and anemy
+
+function preload() {
+
+  playerImage = loadImage("assets/images/pacman.png");
+  enemyImage = loadImage("assets/images/ghost.png");
+  level = loadImage("assets/images/stage.png");
+
+
+}
+
 function setup() {
   // Create our playing area
   createCanvas(500,500);
@@ -61,8 +85,8 @@ function setup() {
 // Handle moving the avatar and enemy and checking for dodges and
 // game over situations.
 function draw() {
-  // A pink background
-  background(255,220,220);
+  // Replacing pink background with "level" background
+  background(level);
 
   // Default the avatar's velocity to 0 in case no key is pressed this frame
   avatarVX = 0;
@@ -147,20 +171,27 @@ function draw() {
   console.log(dodges);
 
   // The player is black
-  fill(0);
+  //fill(0);
   // Draw the player as a circle
-  ellipse(avatarX,avatarY,avatarSize,avatarSize);
+  //ellipse(avatarX,avatarY,avatarSize,avatarSize);
+
+ // replaced the ellipse with pacman image
+  image(playerImage, avatarX, avatarY,playerSizeH,playerSizeW);
 
   // The enemy is red
-  fill(255,0,0);
+  //fill(255,0,0);
   // Draw the enemy as a circle
-  ellipse(enemyX,enemyY,enemySize,enemySize);
+  //ellipse(enemyX,enemyY,enemySize,enemySize);
+
+  // replaced "enemy" ellipse with ghost image
+  image(enemyImage, enemyX, enemyY,enemySizeH,enemySizeW);
+
 
   //added text
-  fill(255);
-  textSize(15);
-  textAlign(CENTER);
-  text("Ghosts dodged:", 400, 470);
+    fill(255);
+    textSize(15);
+    textAlign(CENTER);
+    text("Ghosts dodged:", 400, 470);
   // adding the font which will display the number of successful dodges
     fill(0,0,255);
     textFont('Impact');
