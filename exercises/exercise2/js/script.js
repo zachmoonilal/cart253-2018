@@ -2,6 +2,7 @@
 
 Exercise 2 - The Artful Dodger
 Pippin Barr
+Edited by Zachary Moonilal
 
 Starter code for exercise 2.
 
@@ -121,6 +122,20 @@ function draw() {
   // Update the enemy's position based on its velocity
   enemyX = enemyX + enemyVX;
 
+// added an if statement so that if the left or right key is pressed then random ellipses will appear
+  if (keyIsDown(LEFT_ARROW)) {
+    fill(255);
+    ellipse(random(width), random(height), 15,15);
+  }
+  else if (keyIsDown(RIGHT_ARROW)) {
+    fill(255);
+    ellipse(random(width), random(height), 30,30);
+  }
+  else if (keyIsPressed) {
+    fill (255);
+    ellipse(random(width), random(height), 10,10);
+  }
+
   // Check if the enemy and avatar overlap - if they do the player loses
   // We do this by checking if the distance between the centre of the enemy
   // and the centre of the avatar is less that their combined radii
@@ -175,7 +190,7 @@ function draw() {
   // Draw the player as a circle
   //ellipse(avatarX,avatarY,avatarSize,avatarSize);
 
- // replaced the ellipse with pacman image
+ // replaced the "player" ellipse with pacman image
   image(playerImage, avatarX, avatarY,playerSizeH,playerSizeW);
 
   // The enemy is red
