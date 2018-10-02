@@ -115,38 +115,36 @@ function setup() {
   // And draw it (this means it will always be on top)
   image(targetImage,targetX,targetY);
 
-  //added displayed image that I am searching for
-
-  fill(random(0,255), random(0,255), random(0));
-  rect(windowWidth,windowHeight, 300,150);
-  image(targetImage, 150, 75);
 
   //Displaying the target in the top right corner
 
-fill(255,220,0);
-rect(windowWidth - 270, 10, 240, 230);
-image(targetImage, windowWidth - 140,180);
+  fill(255,220,0);
+  rect(windowWidth - 270, 10, 240, 230);
+  image(targetImage, windowWidth - 140,180);
 
 // Displaying "find me" message
 
-textFont("impact");
-textSize(30);
-fill(0);
-text("WANTED", windowWidth - 195, 60);
+  textFont("impact");
+  textSize(30);
+  fill(0);
+  text("WANTED", windowWidth - 195, 60);
 
-textFont("impact");
-textSize(15);
-fill(0);
-text("Reward: $$$ (not really though)", windowWidth - 240,100);
-
-
+  textFont("impact");
+  textSize(15);
+  fill(0);
+  text("Reward: $$$ (not really though)", windowWidth - 240,100);
 
 }
 
 function draw() {
 
-
-
+  // Preventing the target from ever appearing underneath the "find me" sign
+  while (targetX > windowWidth - 270 && targetY < 220) {
+    console.log("OVERLAP");
+    targetX = random(0,width);
+    targetY = random(0,height);
+  
+}
 
   if (gameOver) {
     // Prepare our typography
@@ -156,14 +154,12 @@ function draw() {
     noStroke();
     fill(random(255));
     // Tell them they won!
-    text("YOU WINNED!",width/2,height/2);
+    text("YOU WINNED :D",width/2,height/2);
 
     noFill();
     stroke(random(255));
     strokeWeight(10);
     ellipse(targetX,targetY,targetImage.width,targetImage.height);
-
-
 
   }
 }
