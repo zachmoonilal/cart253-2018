@@ -127,6 +127,20 @@ fill(255,220,0);
 rect(windowWidth - 270, 10, 240, 230);
 image(targetImage, windowWidth - 140,180);
 
+// Displaying "find me" message
+
+textFont("impact");
+textSize(30);
+fill(0);
+text("WANTED", windowWidth - 195, 60);
+
+textFont("impact");
+textSize(15);
+fill(0);
+text("Reward: $$$ (not really though)", windowWidth - 240,100);
+
+
+
 }
 
 function draw() {
