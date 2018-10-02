@@ -2,6 +2,8 @@
 Where's Sausage Dog?
 by Pippin Barr
 
+Student: Zachary Moonilal
+
 An algorithmic version of a Where's Wally searching game where you
 need to click on the sausage dog you're searching for in amongst all
 the visual noise of other animals.
@@ -61,6 +63,10 @@ function setup() {
   background("#ffff00");
   imageMode(CENTER);
 
+
+
+
+
   // Use a for loop to draw as many decoys as we need
   for (var i = 0; i < numDecoys; i++) {
     // Choose a random location for this decoy
@@ -108,9 +114,26 @@ function setup() {
   targetY = random(0,height);
   // And draw it (this means it will always be on top)
   image(targetImage,targetX,targetY);
+
+  //added displayed image that I am searching for
+
+  fill(random(0,255), random(0,255), random(0));
+  rect(windowWidth,windowHeight, 300,150);
+  image(targetImage, 150, 75);
+
+  //Displaying the target in the top right corner
+
+fill(255,220,0);
+rect(windowWidth - 270, 10, 240, 230);
+image(targetImage, windowWidth - 140,180);
+
 }
 
 function draw() {
+
+
+
+
   if (gameOver) {
     // Prepare our typography
     textFont("Helvetica");
@@ -125,6 +148,9 @@ function draw() {
     stroke(random(255));
     strokeWeight(10);
     ellipse(targetX,targetY,targetImage.width,targetImage.height);
+
+
+
   }
 }
 
