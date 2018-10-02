@@ -12,6 +12,14 @@ Animal images from:
 https://creativenerds.co.uk/freebies/80-free-wildlife-icons-the-best-ever-animal-icon-set/
 ******************************************************************************/
 
+// velocity and speed variables for random movement
+var dogX;
+var dogY;
+var vx;
+var vy;
+var speedChange = 1;
+var maxSpeed = 5;
+var radius = 60;
 // Position and image of the sausage dog we're searching for
 var targetX;
 var targetY;
@@ -62,12 +70,7 @@ function setup() {
   createCanvas(windowWidth,windowHeight);
   background("#ffff00");
   imageMode(CENTER);
-
-
-
-
-
-  // Use a for loop to draw as many decoys as we need
+// Use a for loop to draw as many decoys as we need
   for (var i = 0; i < numDecoys; i++) {
     // Choose a random location for this decoy
     var x = random(0,width);
@@ -134,6 +137,12 @@ function setup() {
   fill(0);
   text("Reward: $$$ (not really though)", windowWidth - 240,100);
 
+  // Creating the dog and target connection
+  dogX = targetX;
+  dogY = targetY;
+  // Creating the velocity and speed connections
+  vx = 0;
+  vy = 0;
 }
 
 function draw() {
@@ -143,7 +152,21 @@ function draw() {
     console.log("OVERLAP");
     targetX = random(0,width);
     targetY = random(0,height);
-  
+
+    //Repeating the display of the sign in the top right corner
+    fill(255,220,0);
+    rect(windowWidth - 270, 10, 240, 230);
+    image(targetImage, windowWidth - 140,180);
+    //Repeating the "find me" sign
+    textFont("impact");
+    textSize(30);
+    fill(0);
+    text("WANTED", windowWidth - 195, 60);
+
+    textFont("impact");
+    textSize(15);
+    fill(0);
+    text("Reward: $$$ (not really though)", windowWidth - 240,100);
 }
 
   if (gameOver) {
@@ -160,6 +183,32 @@ function draw() {
     stroke(random(255));
     strokeWeight(10);
     ellipse(targetX,targetY,targetImage.width,targetImage.height);
+
+    //defining the random speed at which the dog will follow
+    vx += random(-speedChange, speedChange);
+    vy += random(-speedChange, speedChange);
+
+    dogX += vx;
+    dogY += vy;
+
+    image( targetImage,dogX, dogY, radius * 2) ;
+
+    //wrapping the dog so that it is contained within boundaries of the screen
+    //To ensure it does not continue off screen for good
+    if (dogX + radius < 0) {
+      dogX += width;
+    }
+    else if (dogX - radius > width) {
+      dogX -= width;
+    }
+
+    if (dogY + radius < 0) {
+      dogY += height;
+    }
+    else if (dogY - radius > height) {
+      dogY -= height;
+}
+
 
   }
 }
